@@ -1,4 +1,3 @@
-
 import time
 import asyncio
 from fastapi import FastAPI, File, UploadFile
@@ -18,6 +17,17 @@ def root():
 
 @app.post("/api/v1/extract_text")
 async def extract_text(Images: List[UploadFile] = File(...)):
+    """
+    Perform Optical Character Recognition (OCR) on uploaded images.
+
+    Args:
+        Images (List[UploadFile]): A list of image files uploaded by the user.
+
+    Returns:
+        Dict[str, str]: A dictionary containing the extracted text for each uploaded image,
+              along with the time taken to process the images.
+    """
+
     response = {}
     s = time.time()
     tasks = []
